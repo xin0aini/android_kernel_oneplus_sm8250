@@ -22,7 +22,7 @@ jobs:
           git remote add spidey https://github.com/spidey-t/android_kernel_oneplus_sm8250.git
           git fetch spidey lineage-23.2
           # 填入你想要提取的 commit 节点
-          git cherry-pick 0ab63d9 ab6b2ec bd1d761 55b6e67 a2aaaee 648fade 38d5045 9095b3b 39e586f 59580b2
+          git cherry-pick 0ab63d9 bd1d761 55b6e67 a2aaaee 648fade 38d5045 9095b3b 39e586f 59580b2
       - name: Push changes
         run: |
           git push origin HEAD

@@ -785,14 +785,6 @@ static void sk_psock_write_space(struct sock *sk)
 		write_space(sk);
 }
 
-static struct sk_psock *sk_psock_from_strp(struct strparser *strp)
-{
-	struct sk_psock_parser *parser;
-
-	parser = container_of(strp, struct sk_psock_parser, strp);
-	return container_of(parser, struct sk_psock, parser);
-}
-
 #if IS_ENABLED(CONFIG_BPF_STREAM_PARSER)
 static void sk_psock_strp_read(struct strparser *strp, struct sk_buff *skb)
 {
@@ -815,6 +807,14 @@ static void sk_psock_strp_read(struct strparser *strp, struct sk_buff *skb)
 static int sk_psock_strp_read_done(struct strparser *strp, int err)
 {
 	return err;
+}
+
+static struct sk_psock *sk_psock_from_strp(struct strparser *strp)
+{
+	struct sk_psock_parser *parser;
+
+	parser = container_of(strp, struct sk_psock_parser, strp);
+	return container_of(parser, struct sk_psock, parser);
 }
 
 static int sk_psock_strp_parse(struct strparser *strp, struct sk_buff *skb)
